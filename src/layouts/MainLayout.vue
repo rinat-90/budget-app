@@ -39,20 +39,8 @@
     </nav>
 
     <ul class="sidenav app-sidenav open">
-      <li>
-        <a href="#" class="waves-effect waves-orange pointer">Balance</a>
-      </li>
-      <li>
-        <a href="#" class="waves-effect waves-orange pointer">History</a>
-      </li>
-      <li>
-        <a href="#" class="waves-effect waves-orange pointer">Planing</a>
-      </li>
-      <li>
-        <a href="#" class="waves-effect waves-orange pointer">New entry</a>
-      </li>
-      <li>
-        <a href="#" class="waves-effect waves-orange pointer">Categories</a>
+      <li v-for="(link, index) in links" :key="index">
+        <router-link :to="link.path" tag="a" class="waves-effect waves-orange pointer">{{ link.title }}</router-link>
       </li>
     </ul>
 
@@ -72,7 +60,19 @@
 
 <script>
   export default {
-    name: "main"
+    name: "main",
+    data(){
+      return{
+       // 'Balance', 'History', 'Planing', 'New Entry', 'Categories'
+        links: [
+          { title: 'Balance', path: '/' },
+          { title: 'History', path: '/history' },
+          { title: 'Planing', path: '/planing' },
+          { title: 'New Record', path: '/record' },
+          { title: 'Categories', path: '/categories' },
+        ]
+      }
+    }
   }
 </script>
 
