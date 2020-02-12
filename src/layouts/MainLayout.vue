@@ -1,50 +1,11 @@
 <template>
   <div class="app-main-layout">
-    <nav class="navbar orange lighten-1">
-      <div class="nav-wrapper">
-        <div class="navbar-left">
-          <a href="#">
-            <i class="material-icons black-text">dehaze</i>
-          </a>
-          <span class="black-text">12.12.12</span>
-        </div>
+    <Navbar @click="isOpen = !isOpen" />
+    <Sidebar v-model="isOpen" />
 
-        <ul class="right hide-on-small-and-down">
-          <li>
-            <a
-              class="dropdown-trigger black-text"
-              href="#"
-              data-target="dropdown"
-            >
-              USER NAME
-              <i class="material-icons right">arrow_drop_down</i>
-            </a>
 
-            <ul id='dropdown' class='dropdown-content'>
-              <li>
-                <a href="#" class="black-text">
-                  <i class="material-icons">account_circle</i>Profile
-                </a>
-              </li>
-              <li class="divider" tabindex="-1"></li>
-              <li>
-                <a href="#" class="black-text">
-                  <i class="material-icons">assignment_return</i>Exit
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </nav>
 
-    <ul class="sidenav app-sidenav open">
-      <li v-for="(link, index) in links" :key="index">
-        <router-link :to="link.path" tag="a" class="waves-effect waves-orange pointer">{{ link.title }}</router-link>
-      </li>
-    </ul>
-
-    <main class="app-content">
+    <main class="app-content" :class="{full: !isOpen}">
       <div class="app-page">
         <router-view />
       </div>
@@ -59,20 +20,17 @@
 </template>
 
 <script>
+  import Navbar from "../components/Partials/Navbar";
+  import Sidebar from "../components/Partials/Sidebar";
   export default {
-    name: "main",
-    data(){
-      return{
-       // 'Balance', 'History', 'Planing', 'New Entry', 'Categories'
-        links: [
-          { title: 'Balance', path: '/' },
-          { title: 'History', path: '/history' },
-          { title: 'Planing', path: '/planing' },
-          { title: 'New Record', path: '/record' },
-          { title: 'Categories', path: '/categories' },
-        ]
-      }
-    }
+    name: "main-layout",
+    components:{
+      Navbar,
+      Sidebar
+    },
+    data: () => ({
+      isOpen: true
+    })
   }
 </script>
 
