@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Счет</h3>
+      <h3>Balance</h3>
 
       <button class="btn waves-effect waves-light btn-small">
         <i class="material-icons">refresh</i>
@@ -25,20 +25,20 @@
         <div class="card orange darken-3 bill-card">
           <div class="card-content white-text">
             <div class="card-header">
-              <span class="card-title">Курс валют</span>
+              <span class="card-title">Currency rate</span>
             </div>
             <table>
               <thead>
               <tr>
-                <th>Валюта</th>
-                <th>Курс</th>
-                <th>Дата</th>
+                <th>Currency</th>
+                <th>Rate</th>
+                <th>Date</th>
               </tr>
               </thead>
 
               <tbody>
               <tr>
-                <td>руб</td>
+                <td>Rub</td>
                 <td>12121</td>
                 <td>12.12.12</td>
               </tr>

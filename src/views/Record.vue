@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Новая запись</h3>
+      <h3>New Record</h3>
     </div>
 
     <form class="form">
@@ -10,7 +10,7 @@
           <option
           >name cat</option>
         </select>
-        <label>Выберите категорию</label>
+        <label>Choose category</label>
       </div>
 
       <p>
@@ -21,7 +21,7 @@
             type="radio"
             value="income"
           />
-          <span>Доход</span>
+          <span>Income</span>
         </label>
       </p>
 
@@ -33,7 +33,7 @@
             type="radio"
             value="outcome"
           />
-          <span>Расход</span>
+          <span>Expense</span>
         </label>
       </p>
 
@@ -42,7 +42,7 @@
           id="amount"
           type="number"
         >
-        <label for="amount">Сумма</label>
+        <label for="amount">Sum</label>
         <span class="helper-text invalid">amount пароль</span>
       </div>
 
@@ -51,7 +51,7 @@
           id="description"
           type="text"
         >
-        <label for="description">Описание</label>
+        <label for="description">Description</label>
         <span
           class="helper-text invalid">description пароль</span>
       </div>
