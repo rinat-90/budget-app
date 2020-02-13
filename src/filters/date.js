@@ -5,7 +5,6 @@ export default function (value, format = 'date') {
     options.month = 'long';
     options.year = 'numeric';
   }
-
   if(format.includes('time')){
     options.hour = '2-digit';
     options.minute = '2-digit';
