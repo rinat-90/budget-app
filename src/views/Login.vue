@@ -92,7 +92,7 @@
 
         try{
           await this.$store.dispatch('login', formData);
-          this.$router.push('/')
+          await this.$router.push('/')
         }catch (e) { }
       }
     }

@@ -16,7 +16,7 @@
             href="#"
             data-target="dropdown"
           >
-            USER NAME
+            {{ name }}
             <i class="material-icons right">arrow_drop_down</i>
           </a>
 
@@ -49,6 +49,11 @@
       interval: null,
       dropdown: null
     }),
+    computed:{
+      name(){
+        return this.$store.getters.info.name
+      }
+    },
     mounted() {
       this.interval = setInterval(() =>{
         this.date = new Date()

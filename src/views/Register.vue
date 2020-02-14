@@ -110,7 +110,7 @@
         };
         try {
           await this.$store.dispatch('register', formData);
-          this.$router.push('/')
+          await this.$router.push('/')
         }catch (e) {
 
         }

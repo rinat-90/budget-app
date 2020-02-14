@@ -16,7 +16,6 @@
     watch:{
       error({code}){
         this.$error(messages[code] || 'Something went wrong!');
-       console.log(code)
       }
     }
   }
