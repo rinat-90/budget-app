@@ -5,8 +5,20 @@
 </template>
 
 <script>
+  import messages from "../utils/messages";
   export default {
-    name: "empty"
+    name: "empty",
+    computed:{
+      error(){
+       return this.$store.getters.error
+      }
+    },
+    watch:{
+      error({code}){
+        this.$error(messages[code] || 'Something went wrong!');
+       console.log(code)
+      }
+    }
   }
 </script>
 
