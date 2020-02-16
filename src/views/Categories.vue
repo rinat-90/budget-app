@@ -4,9 +4,15 @@
       <h3>Categories</h3>
     </div>
     <section>
-      <div class="row">
+      <app-loader v-if="loading"></app-loader>
+      <div class="row" v-else>
         <CreateCategory @created="addNewCategory" />
-        <EditCategory />
+        <EditCategory
+          v-if="categories.length"
+          :categories="categories"
+          @updated="updateCategories"
+          :key="categories.length + updateCount"/>
+        <p v-else class="center">No categories</p>
       </div>
     </section>
   </div>
@@ -19,12 +25,23 @@
     name: "Categories",
     components:{ CreateCategory, EditCategory },
     data:() =>({
-      categories: []
+      categories: [],
+      loading: true,
+      updateCount: 0
     }),
+    async mounted(){
+      this.categories = await this.$store.dispatch('fetchCategories');
+      this.loading = false
+    },
     methods: {
       addNewCategory(category) {
         this.categories.push(category);
-        console.log(this.categories);
+      },
+      updateCategories(category) {
+        const idx = this.categories.findIndex(cat => cat.id === category.id);
+        this.categories[idx].title = category.title;
+        this.categories[idx].amount = category.amount;
+        this.updateCount++
       }
     }
   }

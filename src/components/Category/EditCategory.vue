@@ -5,27 +5,50 @@
         <h4>Edit</h4>
       </div>
 
-      <form>
+      <form @submit.prevent="submitHandler">
         <div class="input-field" >
-          <select>
-            <option>Category</option>
+          <select
+            v-model="current"
+            ref="select"
+            id="cats">
+            <option
+              v-for="cat in categories"
+              :key="cat.id"
+              :value="cat.id">
+              {{ cat.title }}
+            </option>
           </select>
-          <label>Choose category</label>
-        </div>
-
-        <div class="input-field">
-          <input type="text" id="name">
-          <label for="name">Title</label>
-          <span class="helper-text invalid">TITLE</span>
+          <label for="cats">Choose category</label>
         </div>
 
         <div class="input-field">
           <input
-            id="limit"
+            v-model="title"
+            :class="{invalid: $v.title.$dirty && !$v.title.required}"
+            type="text"
+            id="title"
+          >
+          <label for="title">Title</label>
+          <span
+            v-if="$v.title.$dirty && !$v.title.required"
+            class="helper-text invalid">
+            Enter name of the category
+          </span>
+        </div>
+
+        <div class="input-field">
+          <input
+            :class="{invalid: $v.amount.$dirty && !$v.amount.minValue}"
+            v-model.number="amount"
+            id="amount"
             type="number"
           >
-          <label for="limit">Limit</label>
-          <span class="helper-text invalid">LIMIT</span>
+          <label for="amount">Amount</label>
+          <span
+            v-if="$v.amount.$dirty && !$v.amount.minValue"
+            class="helper-text invalid">
+            Minimal amount is {{ $v.amount.$params.minValue.min }}
+          </span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
@@ -38,11 +61,61 @@
 </template>
 
 <script>
+  import { required, minValue } from 'vuelidate/lib/validators'
   export default {
-    name: "EditCatefory",
+    name: "EditCategory",
+    props: ['categories'],
+    data:() =>({
+      select: null,
+      title: '',
+      amount: 50,
+      current: null
+    }),
+    validations:{
+      title:{ required },
+      amount: { minValue: minValue(50) }
+    },
     mounted(){
+     this.select =  M.FormSelect.init(this.$refs.select);
       M.updateTextFields();
     },
+    destroyed() {
+      if (this.select && this.select.destroy){
+        this.select.destroy()
+      }
+    },
+    watch:{
+      current(catId){
+        const { title, amount } = this.categories.find(cat => cat.id === catId);
+        this.title = title;
+        this.amount = amount
+      }
+    },
+    created() {
+      const { id, title, amount } = this.categories[0];
+      this.current = id;
+      this.title = title;
+      this.amount = amount
+    },
+    methods: {
+      async submitHandler() {
+        if(this.$v.$invalid){
+          this.$v.$touch();
+          return false
+        }
+
+        const category = {
+          id: this.current,
+          title: this.title,
+          amount: this.amount
+        };
+        try {
+          await this.$store.dispatch('updateCategory', category);
+          this.$message('Category successfully updated');
+          this.$emit('updated', category);
+        }catch (e) { }
+      }
+    }
   }
 </script>
 
