@@ -23,7 +23,7 @@
         { title: 'History', to: '/history' },
         { title: 'Planing', to: '/planing' },
         { title: 'New Record', to: '/record' },
-        { title: 'Categories', to: '/categories' },
+        { title: 'Category', to: '/categories' },
       ]
     })
   }
