@@ -8,43 +8,42 @@
       <canvas></canvas>
     </div>
 
-    <section>
-      <table>
-        <thead>
-        <tr>
-          <th>#</th>
-          <th>Sum</th>
-          <th>Date</th>
-          <th>Category</th>
-          <th>Type</th>
-          <th>Open</th>
-        </tr>
-        </thead>
+    <app-loader v-if="loading" />
 
-        <tbody>
-        <tr>
-          <td>1</td>
-          <td>1212</td>
-          <td>12.12.32</td>
-          <td>name</td>
-          <td>
-            <span class="white-text badge red">Expense</span>
-          </td>
-          <td>
-            <button class="btn-small btn">
-              <i class="material-icons">open_in_new</i>
-            </button>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+    <p v-else-if="!records.length" class="center">
+      You don't have any records
+      <router-link to="/record">Add new record</router-link>
+    </p>
+
+    <section v-else>
+      <HistoryTable :records="records" />
     </section>
   </div>
 </template>
 
 <script>
+  import HistoryTable from "../components/Partials/HistoryTable";
   export default {
-    name: "History"
+    name: "History",
+    components:{ HistoryTable },
+    data:()=>({
+      loading: true,
+      categories: [],
+      records: [],
+    }),
+    async mounted() {
+      const records = await this.$store.dispatch('fetchRecords');
+      this.categories = await this.$store.dispatch('fetchCategories');
+      this.records = records.map(record => {
+        return{
+          ...record,
+          categoryName: this.categories.find(c => c.id === record.categoryId).title,
+          typeClass: record.type === 'income' ? 'green' : 'red',
+          typeText: record.type === 'income' ? 'Income': 'Expense'
+        }
+      });
+      this.loading = false
+    }
   }
 </script>
 
