@@ -27,6 +27,7 @@
 <script>
   import Navbar from "../components/Partials/Navbar";
   import Sidebar from "../components/Partials/Sidebar";
+  import messages from "../utils/messages";
   export default {
     name: "main-layout",
     components:{
@@ -37,6 +38,16 @@
       isOpen: true,
       loading: true
     }),
+    computed:{
+      error(){
+        return this.$store.getters.error
+      }
+    },
+    watch:{
+      error({code}){
+        this.$error(messages[code] || 'Something went wrong!');
+      }
+    },
     async mounted() {
       if(!Object.keys(this.$store.getters.info).length){
         await this.$store.dispatch('fetchInfo')
