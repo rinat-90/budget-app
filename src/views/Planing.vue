@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Planing</h3>
+      <h3>{{'title_planning' | localize }}</h3>
       <h4>{{ info.balance | currency('USD') }}</h4>
     </div>
 
@@ -16,7 +16,7 @@
       <div v-for="cat in categories" :key="cat.id">
         <p>
           <strong>{{ cat.title }}:</strong>
-          Spend {{ cat.expense | currency('USD') }} out of {{ cat.amount | currency('USD') }}
+          {{ 'spent' | localize }} {{ cat.expense | currency('USD') }} {{ 'out_of' | localize }} {{ cat.amount | currency('USD') }}
         </p>
         <div class="progress" v-tooltip="cat.tooltip">
           <div
@@ -34,6 +34,7 @@
 
   import { mapGetters } from 'vuex';
   import currencyFilter from "../filters/currency";
+  import localizeFilter from "../filters/localize.filter";
   export default {
     name: "Planing",
     data:() =>({
@@ -63,7 +64,7 @@
             ? 'yellow'
             : 'red';
         const tooltipValue = cat.amount -expense;
-        const tooltip = `${ tooltipValue < 0 ? 'Over the limit for ' : 'Remaining' }${ currencyFilter(Math.abs(tooltipValue)) }`;
+        const tooltip = `${ tooltipValue < 0 ? 'Over the limit for ' : `${localizeFilter('remaining')} ` }${ currencyFilter(Math.abs(tooltipValue)) }`;
 
         return{
           ...cat,

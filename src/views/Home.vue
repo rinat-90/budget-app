@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Balance</h3>
+      <h3>{{'title_balance' | localize }}</h3>
 
       <button @click="refresh" class="btn waves-effect waves-light btn-small">
         <i class="material-icons">refresh</i>

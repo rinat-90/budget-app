@@ -2,7 +2,7 @@
   <div class="col s12 m6">
     <div>
       <div class="page-subtitle">
-        <h4>Edit</h4>
+        <h4>{{ 'edit' | localize}}</h4>
       </div>
 
       <form @submit.prevent="submitHandler">
@@ -18,7 +18,7 @@
               {{ cat.title }}
             </option>
           </select>
-          <label for="cats">Choose category</label>
+          <label for="cats">{{ 'label_choose_cat' | localize }}</label>
         </div>
 
         <div class="input-field">
@@ -28,11 +28,11 @@
             type="text"
             id="title"
           >
-          <label for="title">Title</label>
+          <label for="title">{{ 'label_title' | localize }}</label>
           <span
             v-if="$v.title.$dirty && !$v.title.required"
             class="helper-text invalid">
-            Enter name of the category
+            {{ 'error_cat_title' | localize }}
           </span>
         </div>
 
@@ -43,16 +43,16 @@
             id="amount"
             type="number"
           >
-          <label for="amount">Amount</label>
+          <label for="amount">{{ 'label_amount' | localize }}</label>
           <span
             v-if="$v.amount.$dirty && !$v.amount.minValue"
             class="helper-text invalid">
-            Minimal amount is {{ $v.amount.$params.minValue.min }}
+            {{ 'error_min_amount' | localize}} {{ $v.amount.$params.minValue.min }}
           </span>
         </div>
 
         <button class="btn waves-effect waves-light" type="submit">
-          Update
+          {{ 'update' | localize }}
           <i class="material-icons right">send</i>
         </button>
       </form>

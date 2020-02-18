@@ -1,5 +1,5 @@
 <template>
-  <form @submit.prevent="onSubmit" class="card auth-card">
+  <form @submit.prevent="submitHandler" class="card auth-card">
     <div class="card-content">
       <span class="card-title">Home Budget</span>
       <div class="input-field">
@@ -79,7 +79,7 @@
       }
     },
     methods: {
-      async onSubmit() {
+      async submitHandler() {
         if(this.$v.$invalid){
           this.$v.$touch();
           return

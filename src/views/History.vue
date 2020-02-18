@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>Records History</h3>
+      <h3>{{ 'title_history' | localize }}</h3>
     </div>
 
     <div class="history-chart">
@@ -21,8 +21,8 @@
         v-model="page"
         :page-count="pageCount"
         :click-handler="pageChangeHandler"
-        :prev-text="'Prev'"
-        :next-text="'Next'"
+        :prev-text="'prev' | localize"
+        :next-text="'next' | localize"
         :container-class="'pagination'"
         :page-class="'waves-effect'">
       </paginate>
@@ -34,6 +34,7 @@
   import paginationMixin from '../mixins/pagination.mixin'
   import { Pie } from 'vue-chartjs'
   import HistoryTable from "../components/Partials/HistoryTable";
+  import localizeFilter from "../filters/localize.filter";
   export default {
     name: "History",
     components:{ HistoryTable },
@@ -57,7 +58,7 @@
             ...record,
             categoryName: categories.find(c => c.id === record.categoryId).title,
             typeClass: record.type === 'income' ? 'green' : 'red',
-            typeText: record.type === 'income' ? 'Income': 'Expense'
+            typeText: record.type === 'income' ? `${localizeFilter('income')}`: `${localizeFilter('expense')}`
           }
         }));
 

@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="page-title">
-      <h3>New Record</h3>
+      <h3>{{ 'title_record' | localize }}</h3>
     </div>
     <app-loader v-if="loading"></app-loader>
     <p v-else-if="!categories.length" class="center">
@@ -24,7 +24,7 @@
             {{ cat.title }}
           </option>
         </select>
-        <label for="select">Choose category</label>
+        <label for="select">{{ 'label_choose_cat' | localize }}</label>
       </div>
 
       <p>
@@ -36,7 +36,7 @@
             type="radio"
             value="income"
           />
-          <span>Income</span>
+          <span>{{ 'income' | localize }}</span>
         </label>
       </p>
 
@@ -49,7 +49,7 @@
             type="radio"
             value="expense"
           />
-          <span>Expense</span>
+          <span>{{ 'expense' | localize }}</span>
         </label>
       </p>
 
@@ -60,11 +60,11 @@
           id="amount"
           type="number"
         >
-        <label for="amount">Sum</label>
+        <label for="amount">{{ 'sum' | localize }}</label>
         <span
           v-if="$v.amount.$dirty && !$v.amount.minValue"
           class="helper-text invalid">
-            Minimal amount is {{ $v.amount.$params.minValue.min }}
+            {{ 'error_min_amount' | localize }} {{ $v.amount.$params.minValue.min }}
           </span>
       </div>
 
@@ -75,16 +75,16 @@
           id="description"
           type="text"
         >
-        <label for="description">Description</label>
+        <label for="description">{{ 'label_description' | localize }}</label>
         <span
           v-if="$v.description.$dirty && !$v.description.required"
           class="helper-text invalid">
-            Description is required
+            {{ 'error_desc' | localize }}
         </span>
       </div>
 
       <button class="btn waves-effect waves-light" type="submit">
-        Create
+        {{ 'create' | localize }}
         <i class="material-icons right">send</i>
       </button>
     </form>

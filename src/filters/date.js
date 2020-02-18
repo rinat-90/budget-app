@@ -1,3 +1,4 @@
+import store from '../store'
 export default function (value, format = 'date') {
   const options = {};
   if(format.includes('date')){
@@ -11,5 +12,6 @@ export default function (value, format = 'date') {
     options.second = '2-digit';
   }
 
-  return new Intl.DateTimeFormat('en-US', options,).format(new Date(value))
+  const local = store.getters.info.local || 'en-US';
+  return new Intl.DateTimeFormat(local, options).format(new Date(value))
 }

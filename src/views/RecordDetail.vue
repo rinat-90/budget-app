@@ -16,11 +16,11 @@
             'red': record.type === 'expense',
             'green': record.type === 'income'}">
             <div class="card-content white-text">
-              <p>Description: {{ record.description }}</p>
-              <p>Sum: {{ record.amount | currency('USD') }}</p>
-              <p>Category: {{ record.categoryName }}</p>
+              <p>{{ 'label_description' | localize }}: {{ record.description }}</p>
+              <p>{{ 'label_sum' | localize }}: {{ record.amount | currency('USD') }}</p>
+              <p>{{ 'category' | localize }}: {{ record.categoryName }}</p>
 
-              <small>{{ record.date | date('datetime')}}</small>
+              <p>{{ 'date' | localize }}: {{ record.date | date('datetime')}}</p>
             </div>
           </div>
         </div>

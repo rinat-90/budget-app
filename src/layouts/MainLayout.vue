@@ -3,7 +3,7 @@
     <app-loader v-if="loading" />
     <div v-else class="app-main-layout">
       <Navbar @click="isOpen = !isOpen" />
-      <Sidebar v-model="isOpen" />
+      <Sidebar v-model="isOpen" :key="info.local"/>
 
 
 
@@ -28,6 +28,7 @@
   import Navbar from "../components/Partials/Navbar";
   import Sidebar from "../components/Partials/Sidebar";
   import messages from "../utils/messages";
+  import { mapGetters } from 'vuex';
   export default {
     name: "main-layout",
     components:{
@@ -39,9 +40,7 @@
       loading: true
     }),
     computed:{
-      error(){
-        return this.$store.getters.error
-      }
+      ...mapGetters(['error', 'info']),
     },
     watch:{
       error({code}){
