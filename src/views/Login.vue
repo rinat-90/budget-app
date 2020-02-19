@@ -45,8 +45,7 @@
       <div>
         <button
           class="btn waves-effect waves-light auth-submit"
-          type="submit"
-        >
+          type="submit">
           Enter
           <i class="material-icons right">send</i>
         </button>
@@ -65,6 +64,11 @@
   import messages from "../utils/messages";
   export default {
     name: "Login",
+    metaInfo(){
+      return{
+        title: 'Login',
+      }
+    },
     data: () => ({
       email: '',
       password: ''
@@ -85,13 +89,11 @@
           return
         }
 
-        const formData = {
-          email: this.email,
-          password: this.password
-        };
-
         try{
-          await this.$store.dispatch('login', formData);
+          await this.$store.dispatch('login', {
+            email: this.email,
+            password: this.password
+          });
           await this.$router.push('/')
         }catch (e) { }
       }

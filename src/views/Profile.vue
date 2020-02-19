@@ -44,6 +44,11 @@
   import { mapGetters, mapActions } from 'vuex'
   export default {
     name: "Profile",
+    metaInfo(){
+      return{
+        title: this.$title('title_profile'),
+      }
+    },
     data:() =>({
       name: '',
       isUSLocal: true
@@ -68,7 +73,6 @@
           this.$v.$touch();
           return
         }
-
         try{
           await this.updateInfo({
             name: this.name,

@@ -31,12 +31,17 @@
 </template>
 
 <script>
-
   import { mapGetters } from 'vuex';
-  import currencyFilter from "../filters/currency";
+  import currencyFilter from "../filters/currency.filter";
   import localizeFilter from "../filters/localize.filter";
+
   export default {
     name: "Planing",
+    metaInfo(){
+      return{
+        title: this.$title('title_planning'),
+      }
+    },
     data:() =>({
       loading: true,
       categories: []
@@ -64,7 +69,9 @@
             ? 'yellow'
             : 'red';
         const tooltipValue = cat.amount -expense;
-        const tooltip = `${ tooltipValue < 0 ? 'Over the limit for ' : `${localizeFilter('remaining')} ` }${ currencyFilter(Math.abs(tooltipValue)) }`;
+        const tooltip = `${ tooltipValue < 0
+          ? 'Over the limit for '
+          : `${localizeFilter('remaining')} ` }${ currencyFilter(Math.abs(tooltipValue)) }`;
 
         return{
           ...cat,

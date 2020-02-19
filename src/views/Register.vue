@@ -67,14 +67,14 @@
           class="btn waves-effect waves-light auth-submit"
           type="submit"
         >
-          Зарегистрироваться
+          Register
           <i class="material-icons right">send</i>
         </button>
       </div>
 
       <p class="center">
-        Уже есть аккаунт?
-        <router-link to="/login">Войти!</router-link>
+        Already have an account?
+        <router-link to="/login">Login!</router-link>
       </p>
     </div>
   </form>
@@ -84,10 +84,15 @@
   import { email, required, minLength } from 'vuelidate/lib/validators';
   export default {
     name: "Register",
+    metaInfo(){
+      return{
+        title: 'Register',
+      }
+    },
     data: () => ({
+      name: '',
       email: '',
       password: '',
-      name: '',
       agree: false
     }),
     validations:{
@@ -103,17 +108,15 @@
           return
         }
 
-        const formData = {
-          email: this.email,
-          password: this.password,
-          name: this.name
-        };
         try {
-          await this.$store.dispatch('register', formData);
+          await this.$store.dispatch('register', {
+            email: this.email,
+            password: this.password,
+            name: this.name
+          });
           await this.$router.push('/')
-        }catch (e) {
-
         }
+        catch (e) { }
       }
     }
   }

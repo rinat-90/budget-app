@@ -29,7 +29,7 @@ export default {
 
     async logout({ commit }){
       await firebase.auth().signOut();
-      await commit('clearInfo');
+      await commit('CLEAR_INFO');
     },
 
     getUid(){

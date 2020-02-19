@@ -40,6 +40,11 @@
     components:{ HistoryTable },
     mixins:[paginationMixin],
     extends: Pie,
+    metaInfo(){
+      return{
+        title: this.$title('title_history'),
+      }
+    },
     data:()=>({
       loading: true,
       records: [],
@@ -62,8 +67,7 @@
           }
         }));
 
-        this.renderChart(
-          {
+        this.renderChart({
             labels: categories.map(cat => cat.title),
             datasets: [{
             label: 'Expenses by category',

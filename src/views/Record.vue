@@ -96,6 +96,11 @@
   import { mapGetters } from 'vuex';
   export default {
     name: "Record",
+    metaInfo(){
+      return{
+        title: this.$title('title_record'),
+      }
+    },
     data:() =>({
       loading: true,
       select: null,
@@ -163,9 +168,8 @@
             this.$v.$reset();
             this.amount = 1;
             this.description = ''
-          }catch (e) {
-
           }
+          catch (e) { }
 
         }else{
           this.$message(`You have not enough money on your balance. (-${this.amount - this.info.balance})`);

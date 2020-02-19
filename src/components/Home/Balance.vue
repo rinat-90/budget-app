@@ -31,7 +31,6 @@
     },
     methods: {
       getCurrency(currency){
-        console.log(this.$store.getters.info.balance);
         return Math.floor(this.base * this.rates[currency])
       }
     },

@@ -23,11 +23,14 @@
 <script>
   import Balance from "../components/Home/Balance";
   import Currency from "../components/Home/Currency";
+  import localizeFilter from "../filters/localize.filter";
   export default {
     name: 'Home',
-    components: {
-      Balance,
-      Currency
+    components: { Balance, Currency },
+    metaInfo(){
+      return{
+        title: this.$title('title_balance'),
+      }
     },
     data:() => ({
       loading: true,
@@ -36,7 +39,6 @@
     async mounted() {
       this.currency =  await this.$store.dispatch('fetchCurrency');
       this.loading = false;
-      console.log(this.currency);
     },
     methods: {
       async refresh() {

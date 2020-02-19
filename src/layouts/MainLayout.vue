@@ -31,10 +31,7 @@
   import { mapGetters } from 'vuex';
   export default {
     name: "main-layout",
-    components:{
-      Navbar,
-      Sidebar
-    },
+    components:{ Navbar, Sidebar },
     data: () => ({
       isOpen: true,
       loading: true

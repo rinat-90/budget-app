@@ -24,6 +24,11 @@
   export default {
     name: "Categories",
     components:{ CreateCategory, EditCategory },
+    metaInfo(){
+      return{
+        title: this.$title('title_categories'),
+      }
+    },
     data:() =>({
       categories: [],
       loading: true,

@@ -44,9 +44,9 @@
     </div>
   </div>
 </template>
-
 <script>
   import { required, minValue } from 'vuelidate/lib/validators'
+
   export default {
     name: "CreateCategory",
     data:() => ({
@@ -79,7 +79,8 @@
           this.$message('Category has been created');
           this.$emit('created', category);
 
-        }catch (e) { }
+        }
+        catch (e) { }
 
       }
     }
