@@ -1,5 +1,5 @@
 # budget-app
-demo: budget-app-ef949.web.app
+demo: <a href="budget-app-ef949.web.app">budget-app-ef949.web.app</a>
 ## Project setup
 ```
 npm install
