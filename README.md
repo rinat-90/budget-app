@@ -1,5 +1,5 @@
 # budget-app
-
+demo: budget-app-ef949.web.app
 ## Project setup
 ```
 npm install
