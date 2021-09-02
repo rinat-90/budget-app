@@ -33,14 +33,14 @@ Vue.component('paginate', Paginate);
 
 
 firebase.initializeApp({
-  apiKey: "AIzaSyDjNkTgjFeVubOuHJApghtpJFgPrp6jXmw",
-  authDomain: "budget-app-ef949.firebaseapp.com",
-  databaseURL: "https://budget-app-ef949.firebaseio.com",
-  projectId: "budget-app-ef949",
-  storageBucket: "budget-app-ef949.appspot.com",
-  messagingSenderId: "910121447415",
-  appId: "1:910121447415:web:06b0f2be154c2c9b4388f2",
-  measurementId: "G-9RX1XD3G40"
+  apiKey: "xxxxxxxx",
+  authDomain: "xxxxxx",
+  databaseURL: "xxxxxxxx",
+  projectId: "xxxxxxxx",
+  storageBucket: "xxxxxxxx",
+  messagingSenderId: "xxxxxxxx",
+  appId: "xxxxxxxx",
+  measurementId: "xxxxxxxx"
 });
 
 let app;
